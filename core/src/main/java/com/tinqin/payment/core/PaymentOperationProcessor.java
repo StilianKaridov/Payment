@@ -58,7 +58,9 @@ public class PaymentOperationProcessor implements PaymentOperation {
 
     private PaymentResponse charge(PaymentRequest paymentRequest, String cardToken) {
         try {
-            int amount = (int) (paymentRequest.getAmount().doubleValue() * 100.00);
+            int amount = Double
+                    .valueOf(paymentRequest.getAmount().doubleValue() * 100)
+                    .intValue();
 
             Map<String, Object> chargeParams = new HashMap<>();
             chargeParams.put("amount", amount);
